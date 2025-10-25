@@ -1,0 +1,31 @@
+# Віртуальне середовище
+.venv/
+env/
+venv/
+
+# Python файли
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.so
+
+# Логи та тимчасові файли
+*.log
+*.tmp
+*.swp
+*.swo
+
+# Конфігурації
+*.env
+*.ini
+*.cfg
+
+# IDE (Visual Studio Code)
+.vscode/
+
+# PyCharm
+.idea/
+
+# Windows
+Thumbs.db
