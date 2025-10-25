@@ -19,7 +19,7 @@ async def root():
 
 
 @app.get("/posts")
-async def get_posts(db: Session = Depends(get_db)):
+async def get_post(db: Session = Depends(get_db)):
     posts = db.query(models.Post).all()
     return {"data": posts}
 
@@ -43,10 +43,11 @@ async def update_posts(id: int,updated_post: Post, db: Session = Depends(get_db)
         raise HTTPException(404, detail=f"post with id: {id} not exist")
     post_q.update(updated_post.dict(), synchronize_session=False)
     db.commit()
+    db.refresh(post_q)
     return {"data": post_q.first()}
 
 
-@app.delete("/posts{id}")
+@app.delete("/posts/{id}")
 async def delete_posts(id: int, db: Session = Depends(get_db)):
     post = db.query(models.Post).filter(models.Post.id == id)
     if post.first() is None:
